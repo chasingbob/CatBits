@@ -1,2 +1,4 @@
 # CatBits
-AI projects build up from the basics
+
+##Why?
+Framework for AI projects build from the ground up for community contribution
