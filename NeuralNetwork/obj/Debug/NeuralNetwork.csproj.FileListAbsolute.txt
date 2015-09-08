@@ -1,0 +1,5 @@
+C:\dev\GIT\CatBits\NeuralNetwork\bin\Debug\NeuralNetwork.dll
+C:\dev\GIT\CatBits\NeuralNetwork\bin\Debug\NeuralNetwork.pdb
+C:\dev\GIT\CatBits\NeuralNetwork\obj\Debug\NeuralNetwork.csprojResolveAssemblyReference.cache
+C:\dev\GIT\CatBits\NeuralNetwork\obj\Debug\NeuralNetwork.dll
+C:\dev\GIT\CatBits\NeuralNetwork\obj\Debug\NeuralNetwork.pdb
