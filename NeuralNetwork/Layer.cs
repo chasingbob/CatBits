@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace NeuralNetwork
 {
-    public class Neuron
+    public class Layer
     {
-        public double Input { get; set; }
-        public double Output { get; set; }
-        public double Weight { get; set; }
+        public IActivation Activation { get; set; }
+        public IEnumerable<Neuron> Neurons { get; set; }
     }
 }
