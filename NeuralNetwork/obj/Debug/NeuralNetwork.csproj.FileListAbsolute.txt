@@ -3,3 +3,7 @@ C:\dev\GIT\CatBits\NeuralNetwork\bin\Debug\NeuralNetwork.pdb
 C:\dev\GIT\CatBits\NeuralNetwork\obj\Debug\NeuralNetwork.csprojResolveAssemblyReference.cache
 C:\dev\GIT\CatBits\NeuralNetwork\obj\Debug\NeuralNetwork.dll
 C:\dev\GIT\CatBits\NeuralNetwork\obj\Debug\NeuralNetwork.pdb
+C:\Users\Chris\Documents\GitHubVisualStudio\CatBits\NeuralNetwork\bin\Debug\NeuralNetwork.dll
+C:\Users\Chris\Documents\GitHubVisualStudio\CatBits\NeuralNetwork\bin\Debug\NeuralNetwork.pdb
+C:\Users\Chris\Documents\GitHubVisualStudio\CatBits\NeuralNetwork\obj\Debug\NeuralNetwork.dll
+C:\Users\Chris\Documents\GitHubVisualStudio\CatBits\NeuralNetwork\obj\Debug\NeuralNetwork.pdb
