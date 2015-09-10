@@ -1,0 +1,7 @@
+C:\dev\GIT\CatBits\Algoritms\bin\Debug\Algoritms.XML
+C:\dev\GIT\CatBits\Algoritms\bin\Debug\Algorithms.dll
+C:\dev\GIT\CatBits\Algoritms\bin\Debug\Algorithms.pdb
+C:\dev\GIT\CatBits\Algoritms\bin\Debug\FSharp.Core.dll
+C:\dev\GIT\CatBits\Algoritms\bin\Debug\FSharp.Core.xml
+C:\dev\GIT\CatBits\Algoritms\obj\Debug\Algorithms.dll
+C:\dev\GIT\CatBits\Algoritms\obj\Debug\Algorithms.pdb

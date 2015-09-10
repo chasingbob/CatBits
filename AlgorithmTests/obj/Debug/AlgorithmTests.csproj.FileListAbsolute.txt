@@ -1,0 +1,10 @@
+C:\dev\GIT\CatBits\AlgorithmTests\bin\Debug\AlgorithmTests.dll
+C:\dev\GIT\CatBits\AlgorithmTests\bin\Debug\AlgorithmTests.pdb
+C:\dev\GIT\CatBits\AlgorithmTests\bin\Debug\Algorithms.dll
+C:\dev\GIT\CatBits\AlgorithmTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\dev\GIT\CatBits\AlgorithmTests\bin\Debug\FSharp.Core.dll
+C:\dev\GIT\CatBits\AlgorithmTests\bin\Debug\Algorithms.pdb
+C:\dev\GIT\CatBits\AlgorithmTests\bin\Debug\FSharp.Core.xml
+C:\dev\GIT\CatBits\AlgorithmTests\obj\Debug\AlgorithmTests.csprojResolveAssemblyReference.cache
+C:\dev\GIT\CatBits\AlgorithmTests\obj\Debug\AlgorithmTests.dll
+C:\dev\GIT\CatBits\AlgorithmTests\obj\Debug\AlgorithmTests.pdb

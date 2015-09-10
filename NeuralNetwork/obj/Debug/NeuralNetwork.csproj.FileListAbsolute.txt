@@ -7,3 +7,7 @@ C:\Users\Chris\Documents\GitHubVisualStudio\CatBits\NeuralNetwork\bin\Debug\Neur
 C:\Users\Chris\Documents\GitHubVisualStudio\CatBits\NeuralNetwork\bin\Debug\NeuralNetwork.pdb
 C:\Users\Chris\Documents\GitHubVisualStudio\CatBits\NeuralNetwork\obj\Debug\NeuralNetwork.dll
 C:\Users\Chris\Documents\GitHubVisualStudio\CatBits\NeuralNetwork\obj\Debug\NeuralNetwork.pdb
+C:\dev\GIT\CatBits\NeuralNetwork\bin\Debug\Algorithms.dll
+C:\dev\GIT\CatBits\NeuralNetwork\bin\Debug\FSharp.Core.dll
+C:\dev\GIT\CatBits\NeuralNetwork\bin\Debug\Algorithms.pdb
+C:\dev\GIT\CatBits\NeuralNetwork\bin\Debug\FSharp.Core.xml

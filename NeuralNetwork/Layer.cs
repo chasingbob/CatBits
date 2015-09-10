@@ -9,6 +9,5 @@ namespace NeuralNetwork
     public class Layer
     {
         public IActivation Activation { get; set; }
-        public IEnumerable<Neuron> Neurons { get; set; }
     }
 }
