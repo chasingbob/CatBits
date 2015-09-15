@@ -55,5 +55,15 @@ namespace NeuralNetwork
             
         }
 
+        public void Save(string filename)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Load(string filename)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
