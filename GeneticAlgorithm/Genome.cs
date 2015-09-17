@@ -40,7 +40,7 @@ namespace GeneticAlgorithm
         private void CreateGenes()
         {
             for (int i = 0; i < Genes.Length; i++)
-                Genes[i] = (random.NextDouble() + random.Next(-20, 20));
+                Genes[i] = random.NextDouble() ;
         }
 
         public void Crossover(ref Genome genome2, out Genome child1, out Genome child2)
@@ -68,7 +68,7 @@ namespace GeneticAlgorithm
             for (int pos = 0; pos < Length; pos++)
             {
                 if (random.NextDouble() < MutationRate)
-                    Genes[pos] = (Genes[pos] + (random.NextDouble() + random.Next(-20, 20))) / 2.0;
+                    Genes[pos] = (Genes[pos] + random.NextDouble())  / 2.0;
             }
         }
 
@@ -86,7 +86,6 @@ namespace GeneticAlgorithm
         }
 
         static Random random = new Random();
-
 
         public double Fitness { get; set; }
 
