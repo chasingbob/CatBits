@@ -7,7 +7,7 @@ using static Algorithms.NeuralNetwork;
 
 namespace NeuralNetwork
 {
-    public class SigmoidActication : IActivation
+    public class SigmoidActivation : IActivation
     {
         public double Compute(IEnumerable<double> inputs, IEnumerable<double> weights)
         {

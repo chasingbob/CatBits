@@ -12,15 +12,23 @@ namespace NeuralNetwork
         public FeedforwardNeuralNetwork(IActivation _activation)
         {
             Activation = _activation;
-            InitWeights();
+            //InitWeights();
         }
 
-        private void InitWeights()
+        public void Reset()
         {
-            for (int i=0; i<9; i++)
+            Vs = new double[(NumberOfInputValues + 1) * NumberOfHiddenNeurons];
+            Ws = new double[(NumberOfHiddenNeurons + 1) * NumberOfOutputValues];
+            H = new double[NumberOfHiddenNeurons + 1];
+            H[NumberOfHiddenNeurons] = -1;
+            Outputs = new double[NumberOfOutputValues];
+            Inputs = new double[NumberOfInputValues+1];
+            Inputs[NumberOfInputValues] = -1;
+
+            for (int i=0; i<Vs.Count(); i++)
                 Vs[i] = random.NextDouble();
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < Ws.Count(); i++)
                 Ws[i] = random.NextDouble();
         }
 
@@ -28,28 +36,45 @@ namespace NeuralNetwork
 
         Random random = new Random(DateTime.Now.Millisecond);
         //  Inputs 
-        public double[] Inputs = new double[3];
+        public double[] Inputs;
+
+        public void SetInputs(double[] inputs)
+        {
+            for (var i=0; i<inputs.Count(); i++)
+            {
+                Inputs[i] = inputs[i];
+            }
+        }
 
 
         //  Hidden 
-        public double[] Vs = new double[(2+1) * 3];
-        public double[] H = new double[4];
+        public double[] Vs;
+        public double[] H;
 
 
         //  Outputs
-        public double[] Ws = new double[(3+1) * 2];
-        public double[] Outputs = new double[2];
+        public double[] Ws;
+        public double[] Outputs;
+
+        public int NumberOfInputValues { get; set; }
+        public int NumberOfHiddenNeurons { get; set; }
+        public int NumberOfOutputValues { get; set; }
 
 
         public double[] Calculate()
         {
-            for (int i=0; i<3; i++)
-                H[i] = Activation.Compute(new List<double>(Inputs), new List<Double>() { Vs[i * 3], Vs[i * 3 + 1], Vs[i * 3 + 2] });
+            for (int i = 0; i < NumberOfHiddenNeurons; i++)
+            {
+                var weightRange = Vs.ToList().GetRange((NumberOfInputValues+1) * i, (NumberOfInputValues + 1));
+                H[i] = Activation.Compute(new List<double>(Inputs), weightRange);
+            }
 
-            H[3] = -1;
 
-            for (int i = 0; i < 2; i++)
-                Outputs[i] = Activation.Compute(new List<double>(H), new List<double>() {Ws[i *2], Ws[i*2 +1], Ws[i*2 + 2], Ws[i*2 + 3] });
+            for (int i = 0; i < NumberOfOutputValues; i++)
+            {
+                var weightRange = Ws.ToList().GetRange((NumberOfHiddenNeurons+1)*i, (NumberOfHiddenNeurons + 1));
+                Outputs[i] = Activation.Compute(new List<double>(H), weightRange );
+            }
 
             return Outputs.ToArray();
             

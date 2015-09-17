@@ -10,9 +10,14 @@ namespace FFNNTestApp
     {
         static void Main(string[] args)
         {
-            var activation = new NeuralNetwork.SigmoidActication();
+            var activation = new NeuralNetwork.SigmoidActivation();
             var ffnn = new NeuralNetwork.FeedforwardNeuralNetwork(activation);
-            ffnn.Inputs = new double[] { 0.1, 0.9, -1.0 };
+            ffnn.NumberOfInputValues = 2;
+            ffnn.NumberOfHiddenNeurons = 2;
+            ffnn.NumberOfOutputValues = 1;
+            ffnn.Reset();
+
+            ffnn.SetInputs(new double[] { 0, 1,});
             var result = ffnn.Calculate();
 
             result.ToList().ForEach(r => Console.WriteLine(r));
