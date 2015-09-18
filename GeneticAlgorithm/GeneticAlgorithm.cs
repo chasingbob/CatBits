@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeneticAlgorithm
 {
-	public class GeneticAlgorithm
+    public class GeneticAlgorithm
 	{
 		/// <summary>
 		/// Default constructor sets mutation rate to 5%, crossover to 80%, population to 100,
@@ -19,7 +16,6 @@ namespace GeneticAlgorithm
 			CrossoverRate = 0.80;
 			PopulationSize = 100;
 			GenerationSize = 2000;
-			StrFitness = "";
 		}
 
 		public GeneticAlgorithm(double crossoverRate,
@@ -34,7 +30,6 @@ namespace GeneticAlgorithm
 			PopulationSize = populationSize;
 			GenerationSize = generationSize;
 			GenomeSize = genomeSize;
-			StrFitness = "";
 		}
 
 		public GeneticAlgorithm(int genomeSize)
@@ -202,7 +197,6 @@ namespace GeneticAlgorithm
 		public int GenerationSize { get; set; }
 		public int GenomeSize { get; set; }
 		public double TotalFitness { get; set; }
-		public string StrFitness { get; set; }
 		public bool Elitism { get; set; }
 
 		public List<Genome> CurrentGeneration;

@@ -12,18 +12,16 @@ namespace NeuralNetwork
         public FeedforwardNeuralNetwork(IActivation _activation)
         {
             Activation = _activation;
-            //InitWeights();
         }
 
         public void Reset()
         {
-            Vs = new double[(NumberOfInputValues + 1) * NumberOfHiddenNeurons];
+            Vs = new double[(NumberOfInputValues) * NumberOfHiddenNeurons];
             Ws = new double[(NumberOfHiddenNeurons + 1) * NumberOfOutputValues];
             H = new double[NumberOfHiddenNeurons + 1];
             H[NumberOfHiddenNeurons] = -1;
             Outputs = new double[NumberOfOutputValues];
-            Inputs = new double[NumberOfInputValues+1];
-            Inputs[NumberOfInputValues] = -1;
+            Inputs = new double[NumberOfInputValues];
 
             for (int i=0; i<Vs.Count(); i++)
                 Vs[i] = random.NextDouble();
@@ -40,9 +38,20 @@ namespace NeuralNetwork
 
         public void SetInputs(double[] inputs)
         {
-            for (var i=0; i<inputs.Count(); i++)
+            Inputs = inputs;
+        }
+
+        public void SetWeights(double[] weights)
+        {
+            for (int i=0; i<NumberOfInputValues * NumberOfHiddenNeurons; i++)
             {
-                Inputs[i] = inputs[i];
+                Vs[i] = weights[i];
+            }
+
+            var count = 0;
+            for (int i=NumberOfInputValues * NumberOfHiddenNeurons; i < weights.Count(); i++)
+            {
+                Ws[count++] = weights[i];
             }
         }
 
@@ -65,10 +74,9 @@ namespace NeuralNetwork
         {
             for (int i = 0; i < NumberOfHiddenNeurons; i++)
             {
-                var weightRange = Vs.ToList().GetRange((NumberOfInputValues+1) * i, (NumberOfInputValues + 1));
+                var weightRange = Vs.ToList().GetRange((NumberOfInputValues) * i, (NumberOfInputValues));
                 H[i] = Activation.Compute(new List<double>(Inputs), weightRange);
             }
-
 
             for (int i = 0; i < NumberOfOutputValues; i++)
             {
