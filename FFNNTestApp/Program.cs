@@ -9,7 +9,35 @@ namespace FFNNTestApp
 {
     public class Program
     {
-        static void Main(string[] args)
+        static void Main()
+        {
+            var fitness = new BooleanOrFitness();
+
+            var ga = new GeneticAlgorithm.GeneticAlgorithm(0.8, 0.05, 100, 10000, 9);
+            ga.FitnessFunction = fitness;
+
+            ga.Go();
+
+            double[] best = new double[9];
+            var bestFitness = 0.0;
+            ga.GetBest(out best, out bestFitness);
+
+            var network = new FeedForwardNeuralNetwork(2, 2, 1);
+            network.SetWeights(best);
+
+            var result = network.Calculate(new double[] { 1.0, 0.0 });
+            Console.WriteLine($"1 0 => {result[0]}");
+
+            result = network.Calculate(new double[] { 1.0, 1.0 });
+            Console.WriteLine($"1 1 => {result[0]}");
+
+            result = network.Calculate(new double[] { 0.0, 0.0 });
+            Console.WriteLine($"0 0 => {result[0]}");
+
+            Console.ReadKey();
+        }
+
+        static void __Main(string[] args)
         {
             int numInput = 2;
             int numHidden = 2;
@@ -21,7 +49,6 @@ namespace FFNNTestApp
             Console.WriteLine($"Output: {result[0]}");
 
             Console.ReadKey();
-
         }
 
         static void _Main(string[] args)

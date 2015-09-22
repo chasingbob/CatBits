@@ -15,7 +15,7 @@ namespace FFNNTestApp
             var total = 0.0;
             //  OR
 
-            var network = new FeedForwardNeuralNetwork(2, 3, 1);
+            var network = new FeedForwardNeuralNetwork(2, 2, 1);
             network.SetWeights(values.ToArray());
             
 

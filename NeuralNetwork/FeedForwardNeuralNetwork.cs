@@ -65,12 +65,15 @@ namespace NeuralNetwork
                 for (int j = 0; j < numHidden; ++j)
                     ihWeights[i][j] = weights[k++];
             for (int i = 0; i < numHidden; ++i)
-                hBiases[i] = weights[k++];
+                 hBiases[i] =  weights[k++];
+                //hBiases[i] = -1;   // weights[k++];
             for (int i = 0; i < numHidden; ++i)
                 for (int j = 0; j < numOutput; ++j)
                     hoWeights[i][j] = weights[k++];
             for (int i = 0; i < numOutput; ++i)
                 oBiases[i] = weights[k++];
+             //   oBiases[i] = -1;
+
         }
 
         private void InitializeWeights()
@@ -142,8 +145,7 @@ namespace NeuralNetwork
             for (int i = 0; i < numOutput; ++i)  // add biases to input-to-hidden sums
                 oSums[i] += oBiases[i];
 
-           // double[] softOut = Softmax(oSums); // all outputs at once for efficiency
-            double[] softOut = new double[numOutput];
+          double[] softOut = new double[numOutput];
             for (int i = 0; i < oSums.Count(); i++)
                 softOut[i] = LogSigmoid(oSums[i]);
 
