@@ -85,8 +85,8 @@ namespace NeuralNetwork
             double lo = -0.01;
             double hi = 0.01;
             for (int i = 0; i < initialWeights.Length; ++i)
-                //  initialWeights[i] = (hi - lo) * rnd.NextDouble() + lo;
-                initialWeights[i] = rnd.NextDouble();
+                  initialWeights[i] = (hi - lo) * rnd.NextDouble() + lo;
+              //  initialWeights[i] = rnd.NextDouble();
             this.SetWeights(initialWeights);
         }
 
@@ -131,12 +131,12 @@ namespace NeuralNetwork
             for (int j = 0; j < numHidden; ++j)  // compute i-h sum of weights * inputs
                 for (int i = 0; i < numInput; ++i)
                     hSums[j] += this.inputs[i] * this.ihWeights[i][j]; // note +=
-
+            
             for (int i = 0; i < numHidden; ++i)  // add biases to input-to-hidden sums
                 hSums[i] += this.hBiases[i];
 
             for (int i = 0; i < numHidden; ++i)   // apply activation
-                this.hOutputs[i] = LogSigmoid(hSums[i]); //HyperTan(hSums[i]); // hard-coded
+                this.hOutputs[i] = HyperTan(hSums[i]);  //LogSigmoid(hSums[i]); //HyperTan(hSums[i]); // hard-coded
 
             for (int j = 0; j < numOutput; ++j)   // compute h-o sum of weights * hOutputs
                 for (int i = 0; i < numHidden; ++i)
@@ -147,7 +147,7 @@ namespace NeuralNetwork
 
           double[] softOut = new double[numOutput];
             for (int i = 0; i < oSums.Count(); i++)
-                softOut[i] = LogSigmoid(oSums[i]);
+                softOut[i] = HyperTan(oSums[i]); //LogSigmoid(oSums[i]);
 
             Array.Copy(softOut, outputs, softOut.Length);
 
