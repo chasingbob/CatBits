@@ -65,7 +65,7 @@ namespace FFNNTestApp
             int numInput = 4;
             int numHidden = 6;
             int numOutput = 3;
-            FeedForwardNeuralNetwork2 nn = new FeedForwardNeuralNetwork2(numInput, numHidden, numOutput);
+            FeedForwardNeuralNetwork nn = new FeedForwardNeuralNetwork(numInput, numHidden, numOutput);
 
             int maxEpochs = 80;
             double learnRate = 0.05;

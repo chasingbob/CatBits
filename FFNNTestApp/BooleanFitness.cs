@@ -27,7 +27,7 @@ namespace FFNNTestApp
             //network.SetWeights(values.ToArray());
             //network.SetInputs(new double[] { 0.0, 0.0 });
 
-            var network = new FeedForwardNeuralNetwork2(2, 3, 1);
+            var network = new FeedForwardNeuralNetwork(2, 3, 1);
             network.SetWeights(values.ToArray());
             
 

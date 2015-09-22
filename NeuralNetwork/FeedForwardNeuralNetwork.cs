@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NeuralNetwork
 {
-    public class FeedForwardNeuralNetwork2
+    public class FeedForwardNeuralNetwork
     {
         private Random rnd;
 
@@ -22,7 +22,7 @@ namespace NeuralNetwork
         private double[] oBiases;
         private double[] outputs;
 
-        public FeedForwardNeuralNetwork2(int numInput, int numHidden, int numOutput)
+        public FeedForwardNeuralNetwork(int numInput, int numHidden, int numOutput)
         {
             this.rnd = new Random(0); // for InitializeWeights() and Shuffle()
 
