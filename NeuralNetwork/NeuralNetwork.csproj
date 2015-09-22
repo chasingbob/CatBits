@@ -40,9 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FeedForwardNeuralNetwork2.cs" />
     <Compile Include="IActivation.cs" />
     <Compile Include="Layer.cs" />
-    <Compile Include="FeedforwardNeuralNetwork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SigmoidActication.cs" />
   </ItemGroup>

@@ -9,6 +9,7 @@ module NeuralNetwork =
             then invalidArg "inputs" (sprintf "Inputs and weights counts should be the same length")
         List.zip inputList weightsList
         |> List.sumBy (fun iw -> (fst iw) * (snd iw))
-        |> tanh
+        //|> tanh
+
         
 

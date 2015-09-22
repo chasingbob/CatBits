@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GeneticAlgorithm
 {
@@ -77,40 +78,20 @@ namespace GeneticAlgorithm
 
 		}
 
-		/// <summary>
-		/// After ranking all the genomes by fitness, use a 'roulette wheel' selection
-		/// method.  This allocates a large probability of selection to those with the 
-		/// highest fitness.
-		/// </summary>
-		/// <returns>Random individual biased towards highest fitness</returns>
-		private int RouletteSelection()
-		{
-			double randomFitness = random.NextDouble() * TotalFitness;
-			int idx = -1;
-			int mid;
-			int first = 0;
-			int last = PopulationSize - 1;
-			mid = (last - first) / 2;
+		private int TournamentSelection()
+        {
+            //  Choose random 5 genomes -> choose best out of 5
+            var tmp = new List<Tuple<int,double>>();
+            for (int i=0; i<5; i++)
+            {
+                var position = random.Next(FitnessTable.Count - 1);
+                tmp.Add(new Tuple<int,double>(position, FitnessTable[position]));
+            }
 
-			//  ArrayList's BinarySearch is for exact values only
-			//  so do this by hand.
-			while (idx == -1 && first <= last)
-			{
-				if (randomFitness < FitnessTable[mid])
-				{
-					last = mid;
-				}
-				else if (randomFitness > FitnessTable[mid])
-				{
-					first = mid;
-				}
-				mid = (first + last) / 2;
-				//  lies between i and i+1
-				if ((last - first) == 1)
-					idx = last;
-			}
-			return idx;
-		}
+            var best = tmp.OrderByDescending(o => o.Item2).First().Item1;
+
+            return best;
+        }
 
 		/// <summary>
 		/// Rank population and sort in order of fitness.
@@ -125,7 +106,7 @@ namespace GeneticAlgorithm
 			}
 			CurrentGeneration.Sort(delegate (Genome x, Genome y)
 			{
-				return Comparer<double>.Default.Compare(y.Fitness, x.Fitness);
+				return Comparer<double>.Default.Compare(x.Fitness, y.Fitness);
 			});
 
 			//  now sorted in order of fitness.
@@ -161,8 +142,8 @@ namespace GeneticAlgorithm
 
 			for (int i = 0; i < PopulationSize; i += 2)
 			{
-				int pidx1 = RouletteSelection();
-				int pidx2 = RouletteSelection();
+				int pidx1 = TournamentSelection();
+				int pidx2 = TournamentSelection();
 				Genome parent1, parent2, child1, child2;
 				parent1 = CurrentGeneration[pidx1];
 				parent2 = CurrentGeneration[pidx2];
