@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FeedForwardNeuralNetwork2.cs" />
+    <Compile Include="FeedForwardNeuralNetwork.cs" />
     <Compile Include="IActivation.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

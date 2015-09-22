@@ -24,7 +24,7 @@ namespace NeuralNetwork
 
         public FeedForwardNeuralNetwork(int numInput, int numHidden, int numOutput)
         {
-            this.rnd = new Random(0); // for InitializeWeights() and Shuffle()
+            this.rnd = new Random((int)DateTime.Now.Ticks); // for InitializeWeights() and Shuffle()
 
             this.numInput = numInput;
             this.numHidden = numHidden;
@@ -82,7 +82,8 @@ namespace NeuralNetwork
             double lo = -0.01;
             double hi = 0.01;
             for (int i = 0; i < initialWeights.Length; ++i)
-                initialWeights[i] = (hi - lo) * rnd.NextDouble() + lo;
+                //  initialWeights[i] = (hi - lo) * rnd.NextDouble() + lo;
+                initialWeights[i] = rnd.NextDouble();
             this.SetWeights(initialWeights);
         }
 
@@ -132,7 +133,7 @@ namespace NeuralNetwork
                 hSums[i] += this.hBiases[i];
 
             for (int i = 0; i < numHidden; ++i)   // apply activation
-                this.hOutputs[i] = HyperTan(hSums[i]); // hard-coded
+                this.hOutputs[i] = LogSigmoid(hSums[i]); //HyperTan(hSums[i]); // hard-coded
 
             for (int j = 0; j < numOutput; ++j)   // compute h-o sum of weights * hOutputs
                 for (int i = 0; i < numHidden; ++i)
@@ -141,7 +142,11 @@ namespace NeuralNetwork
             for (int i = 0; i < numOutput; ++i)  // add biases to input-to-hidden sums
                 oSums[i] += oBiases[i];
 
-            double[] softOut = Softmax(oSums); // all outputs at once for efficiency
+           // double[] softOut = Softmax(oSums); // all outputs at once for efficiency
+            double[] softOut = new double[numOutput];
+            for (int i = 0; i < oSums.Count(); i++)
+                softOut[i] = LogSigmoid(oSums[i]);
+
             Array.Copy(softOut, outputs, softOut.Length);
 
             double[] retResult = new double[numOutput];
@@ -177,6 +182,13 @@ namespace NeuralNetwork
                 result[i] = Math.Exp(oSums[i] - max) / scale;
 
             return result; // now scaled so that xi sum to 1.0
+        }
+
+        private static double LogSigmoid(double x)
+        {
+            if (x < -45.0) return 0.0;
+            else if (x > 45.0) return 1.0;
+            else return 1.0 / (1.0 + Math.Exp(-x));
         }
 
         // ---------------------------------------------------------------------------------

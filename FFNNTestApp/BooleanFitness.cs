@@ -12,20 +12,8 @@ namespace FFNNTestApp
     {
         public double GetFitness(IEnumerable<double> values)
         {
-
-           // var activation = new SigmoidActivation();
-           // var network = new FeedforwardNeuralNetwork(activation);
-
             var total = 0.0;
             //  OR
-
-
-            //network.NumberOfInputValues = 2;
-            //network.NumberOfHiddenNeurons = 4;
-            //network.NumberOfOutputValues = 1;
-            //network.Reset();
-            //network.SetWeights(values.ToArray());
-            //network.SetInputs(new double[] { 0.0, 0.0 });
 
             var network = new FeedForwardNeuralNetwork(2, 3, 1);
             network.SetWeights(values.ToArray());

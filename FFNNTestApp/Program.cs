@@ -11,6 +11,21 @@ namespace FFNNTestApp
     {
         static void Main(string[] args)
         {
+            int numInput = 2;
+            int numHidden = 2;
+            int numOutput = 1;
+            FeedForwardNeuralNetwork nn = new FeedForwardNeuralNetwork(numInput, numHidden, numOutput);
+
+            var result = nn.Calculate(new double[] { 1.0, 1.0 });
+
+            Console.WriteLine($"Output: {result[0]}");
+
+            Console.ReadKey();
+
+        }
+
+        static void _Main(string[] args)
+        {
             Console.WriteLine("\nBegin neural network demo\n");
             Console.Write("Goal is to predict species of Iris flower ");
             Console.WriteLine("from color, petal length, petal width \n");
@@ -99,37 +114,6 @@ namespace FFNNTestApp
 
             Console.ReadKey();
         }
-
-        //static void Main(string[] args)
-        //{
-        //    var fitness = new BooleanOrFitness();
-
-        //    var ga = new GeneticAlgorithm.GeneticAlgorithm(0.8, 0.1, 100, 5000, 13);
-        //    ga.FitnessFunction = fitness;
-
-        //    ga.Go();
-
-        //    double[] best = new double[13];
-        //    var bestFitness = 0.0;
-        //    ga.GetBest(out best, out bestFitness);
-
-        //    Console.WriteLine($"Best: {best}");
-
-
-        //    var ffnn = new FeedForwardNeuralNetwork2(2,3,1);
-
-        //    var result = ffnn.Calculate(new double[] { 0, 0, });
-        //    Console.WriteLine($"0 0 => {Math.Round(result[0])}");
-
-        //    result = ffnn.Calculate(new double[] { 1, 0, });
-        //    Console.WriteLine($"1 0 => {Math.Round(result[0])}");
-
-        //    result = ffnn.Calculate(new double[] { 0, 1, });
-        //    Console.WriteLine($"0 1 => {Math.Round(result[0])}");
-
-        //    result = ffnn.Calculate(new double[] { 1, 1, });
-        //    Console.WriteLine($"1 1 => {Math.Round(result[0])}");
-        //}
 
         static void ShowVector(double[] vector, int valsPerRow, int decimals, bool newLine)
         {
