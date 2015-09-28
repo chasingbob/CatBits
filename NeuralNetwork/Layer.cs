@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NeuralNetwork
+﻿namespace NeuralNetwork
 {
-    public class Layer
+    public class NeuralLayer
     {
-        public IActivation Activation { get; set; }
+        public Neuron[] Neurons { get; private set; }
+        public NeuralLayer(int nrOfNeuronsInPreviousLayer, int nrOfNeurons)
+        {
+            Neurons = new Neuron[nrOfNeurons];
+            for (int i = 0; i < nrOfNeurons; i++)
+                Neurons[i] = new Neuron(nrOfNeuronsInPreviousLayer);
+        }
     }
 }

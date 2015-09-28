@@ -11,4 +11,4 @@ https://trello.com/b/Q6Q7DK2V/catbits
 ###Contact:
 e: dries.cronje@outlook.com
 t: @dries139
-b: intellectualcafe.com
+b: http://blog.intellectualcafe.com

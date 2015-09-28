@@ -4,181 +4,96 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NeuralNetwork;
+using System.Drawing;
+using System.IO;
+
 
 namespace FFNNTestApp
 {
     public class Program
     {
+
         static void Main()
         {
-            var fitness = new BooleanOrFitness();
+            //  Is it an apple?
+            var posTrain = @"C:\Temp\NN\train_pos";
+            var posTest = @"C:\Temp\NN\test_pos";
+            var negTrain = @"C:\Temp\NN\train_neg";
+            var negTest = @"C:\Temp\NN\test_neg";
+            var pearsTest = @"C:\Temp\NN\pears_test";
 
-            var ga = new GeneticAlgorithm.GeneticAlgorithm(0.8, 0.05, 100, 10000, 9);
-            ga.FitnessFunction = fitness;
+            var network = new NeuralNetwork.FeedForwardNeuralNetwork(625, 1, 1, 30, -1);
 
-            ga.Go();
+            var valTrainPos = GetValues(posTrain);
+            var valTrainNeg = GetValues(negTrain);
+            var valTestPos = GetValues(posTest);
+            var valTestNeg = GetValues(negTest);
+            var valPears = GetValues(pearsTest);
 
-            double[] best = new double[9];
-            var bestFitness = 0.0;
-            ga.GetBest(out best, out bestFitness);
-
-            var network = new FeedForwardNeuralNetwork(2, 2, 1);
-            network.SetWeights(best);
-
-            var result = network.Calculate(new double[] { 1.0, 0.0 });
-            Console.WriteLine($"1 0 => {result[0]}");
-
-            result = network.Calculate(new double[] { 1.0, 1.0 });
-            Console.WriteLine($"1 1 => {result[0]}");
-
-            result = network.Calculate(new double[] { 0.0, 0.0 });
-            Console.WriteLine($"0 0 => {result[0]}");
-
-            Console.ReadKey();
-        }
-
-        static void __Main(string[] args)
-        {
-            int numInput = 2;
-            int numHidden = 2;
-            int numOutput = 1;
-            FeedForwardNeuralNetwork nn = new FeedForwardNeuralNetwork(numInput, numHidden, numOutput);
-
-            var result = nn.Calculate(new double[] { 1.0, 1.0 });
-
-            Console.WriteLine($"Output: {result[0]}");
-
-            Console.ReadKey();
-        }
-
-        static void _Main(string[] args)
-        {
-            Console.WriteLine("\nBegin neural network demo\n");
-            Console.Write("Goal is to predict species of Iris flower ");
-            Console.WriteLine("from color, petal length, petal width \n");
-            Console.WriteLine("Raw data looks like: \n");
-            Console.WriteLine("blue, 1.4, 0.3, setosa");
-            Console.WriteLine("pink, 4.9, 1.5, versicolor");
-            Console.WriteLine("teal, 5.6, 1.8, virginica \n");
-
-            double[][] trainData = new double[24][];
-            trainData[0] = new double[] { 1, 0, 1.4, 0.3, 1, 0, 0 };
-            trainData[1] = new double[] { 0, 1, 4.9, 1.5, 0, 1, 0 };
-            trainData[2] = new double[] { -1, -1, 5.6, 1.8, 0, 0, 1 };
-            trainData[3] = new double[] { -1, -1, 6.1, 2.5, 0, 0, 1 };
-            trainData[4] = new double[] { 1, 0, 1.3, 0.2, 1, 0, 0 };
-            trainData[5] = new double[] { 0, 1, 1.4, 0.2, 1, 0, 0 };
-            trainData[6] = new double[] { 1, 0, 6.6, 2.1, 0, 0, 1 };
-            trainData[7] = new double[] { 0, 1, 3.3, 1.0, 0, 1, 0 };
-            trainData[8] = new double[] { -1, -1, 1.7, 0.4, 1, 0, 0 };
-            trainData[9] = new double[] { 0, 1, 1.5, 0.1, 0, 1, 1 };
-            trainData[10] = new double[] { 0, 1, 1.4, 0.2, 1, 0, 0 };
-            trainData[11] = new double[] { 0, 1, 4.5, 1.5, 0, 1, 0 };
-            trainData[12] = new double[] { 1, 0, 1.4, 0.2, 1, 0, 0 };
-            trainData[13] = new double[] { -1, -1, 5.1, 1.9, 0, 0, 1 };
-            trainData[14] = new double[] { 1, 0, 6.0, 2.5, 0, 0, 1 };
-            trainData[15] = new double[] { 1, 0, 3.9, 1.4, 0, 1, 0 };
-            trainData[16] = new double[] { 0, 1, 4.7, 1.4, 0, 1, 0 };
-            trainData[17] = new double[] { -1, -1, 4.6, 1.5, 0, 1, 0 };
-            trainData[18] = new double[] { -1, -1, 4.5, 1.7, 0, 0, 1 };
-            trainData[19] = new double[] { 0, 1, 4.5, 1.3, 0, 1, 0 };
-            trainData[20] = new double[] { 1, 0, 1.5, 0.2, 1, 0, 0 };
-            trainData[21] = new double[] { 0, 1, 5.8, 2.2, 0, 0, 1 };
-            trainData[22] = new double[] { 0, 1, 4.0, 1.3, 0, 1, 0 };
-            trainData[23] = new double[] { -1, -1, 5.8, 1.8, 0, 0, 1 };
-
-            double[][] testData = new double[6][];
-            testData[0] = new double[] { 1, 0, 1.5, 0.2, 1, 0, 0 };
-            testData[1] = new double[] { -1, -1, 5.9, 2.1, 0, 0, 1 };
-            testData[2] = new double[] { 0, 1, 1.4, 0.2, 1, 0, 0 };
-            testData[3] = new double[] { 0, 1, 4.7, 1.6, 0, 1, 0 };
-            testData[4] = new double[] { 1, 0, 4.6, 1.3, 0, 1, 0 };
-            testData[5] = new double[] { 1, 0, 6.3, 1.8, 0, 0, 1 };
-
-            Console.WriteLine("Encoded training data is: \n");
-            ShowData(trainData, 5, 1, true);
-
-            Console.WriteLine("Encoded test data is: \n");
-            ShowData(testData, 2, 1, true);
-
-            Console.Write("\nCreating a 4-input, 6-hidden, ");
-            Console.WriteLine("3-output neural network");
-            Console.WriteLine("Using tanh and softmax activations \n");
-            int numInput = 4;
-            int numHidden = 6;
-            int numOutput = 3;
-            FeedForwardNeuralNetwork nn = new FeedForwardNeuralNetwork(numInput, numHidden, numOutput);
-
-            int maxEpochs = 80;
-            double learnRate = 0.05;
-            double momentum = 0.01;
-
-            Console.WriteLine("Setting maxEpochs = " + maxEpochs);
-            Console.WriteLine("Setting learnRate = " + learnRate);
-            Console.WriteLine("Setting momentum  = " + momentum);
-
-            Console.WriteLine("\nBeginning training using back-propagation\n");
-            nn.Train(trainData, maxEpochs, learnRate, momentum);
-            Console.WriteLine("Training complete");
-
-            double[] bestWeights = nn.GetWeights();
-            Console.WriteLine("Final neural network weights and bias values:");
-            ShowVector(bestWeights, 10, 3, true);
-
-            nn.SetWeights(bestWeights);
-            double trainAcc = nn.Accuracy(trainData);
-            Console.WriteLine("\nAccuracy on training data = " +
-              trainAcc.ToString("F4"));
-
-            double testAcc = nn.Accuracy(testData);
-            Console.WriteLine("Accuracy on test data = " +
-              testAcc.ToString("F4"));
-
-            Console.WriteLine("\nEnd neural network demo\n");
-            Console.ReadLine();
-
-           
-
-            Console.ReadKey();
-        }
-
-        static void ShowVector(double[] vector, int valsPerRow, int decimals, bool newLine)
-        {
-            for (int i = 0; i < vector.Length; ++i)
+            for (int i=0; i<1000; i++)
             {
-                if (i % valsPerRow == 0) Console.WriteLine("");
-                Console.Write(vector[i].ToString("F" + decimals).PadLeft(decimals + 4) + " ");
-            }
-            if (newLine == true) Console.WriteLine("");
-        }
-
-        static void ShowData(double[][] data, int numRows, int decimals, bool indices)
-        {
-            for (int i = 0; i < numRows; ++i)
-            {
-                if (indices == true)
-                    Console.Write("[" + i.ToString().PadLeft(2) + "]  ");
-                for (int j = 0; j < data[i].Length; ++j)
+                foreach (var p in valTrainPos)
                 {
-                    double v = data[i][j];
-                    if (v >= 0.0)
-                        Console.Write(" "); // '+'
-                    Console.Write(v.ToString("F" + decimals) + "    ");
+                    network.Train(p.Item2, new float[] { 1.0f }, 0.02f);
                 }
-                Console.WriteLine("");
+                foreach (var p in valTrainNeg)
+                {
+                    network.Train(p.Item2, new float[] { 0.0f }, 0.02f);
+                }
             }
-            Console.WriteLine(". . .");
-            int lastRow = data.Length - 1;
-            if (indices == true)
-                Console.Write("[" + lastRow.ToString().PadLeft(2) + "]  ");
-            for (int j = 0; j < data[lastRow].Length; ++j)
+
+
+            foreach (var p in valTestPos)
             {
-                double v = data[lastRow][j];
-                if (v >= 0.0)
-                    Console.Write(" "); // '+'
-                Console.Write(v.ToString("F" + decimals) + "    ");
+                var result = network.Calculate(p.Item2);
+                Console.WriteLine($"Pos: {result[0]}");
             }
-            Console.WriteLine("\n");
+
+            Console.WriteLine("\r\n");
+
+            foreach (var p in valTestNeg)
+            {
+                var result = network.Calculate(p.Item2);
+                Console.WriteLine($"Neg: {result[0]}");
+            }
+
+            Console.WriteLine("\r\n");
+
+            foreach (var p in valPears)
+            {
+                var result = network.Calculate(p.Item2);
+                Console.WriteLine($"Pear (Not apple): {result[0]}");
+            }
+
+
         }
+
+        private static List<Tuple<int, float[]>> GetValues(string posTrain)
+        {
+            var values = new List<Tuple<int, float[]>>();
+            var count = 0;
+            foreach (var f in Directory.GetFiles(posTrain))
+            {
+                var img = (Bitmap)Image.FromFile(f);
+                var list = new List<float>();
+
+                for (var x = 0; x < 25; x++)
+                {
+                    for (var y = 0; y < 25; y++)
+                    {
+                        var p = (float)((float)(img.GetPixel(x, y).R + img.GetPixel(x, y).G + img.GetPixel(x, y).B) / 3) / 255.0f;
+                        list.Add(p);
+                    }
+                }
+                values.Add(new Tuple<int, float[]>(count, list.ToArray()));
+
+                count++;
+            }
+
+            return values;
+        }
+
+     
+           
     }
 }

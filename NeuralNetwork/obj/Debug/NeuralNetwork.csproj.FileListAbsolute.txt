@@ -11,3 +11,5 @@ C:\dev\GIT\CatBits\NeuralNetwork\bin\Debug\Algorithms.dll
 C:\dev\GIT\CatBits\NeuralNetwork\bin\Debug\FSharp.Core.dll
 C:\dev\GIT\CatBits\NeuralNetwork\bin\Debug\Algorithms.pdb
 C:\dev\GIT\CatBits\NeuralNetwork\bin\Debug\FSharp.Core.xml
+C:\dev\GIT\CatBits\NeuralNetwork\bin\Debug\Common.dll
+C:\dev\GIT\CatBits\NeuralNetwork\bin\Debug\Common.pdb

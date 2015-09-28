@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneticAlgorithm", "Genetic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GATestApp", "GATestApp\GATestApp.csproj", "{35BBE2F8-3192-44C5-9156-489C5CF52C90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatBits.Common", "Common\CatBits.Common.csproj", "{33AC7D0C-7D44-4621-8DB7-56BBB1E2FB95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{35BBE2F8-3192-44C5-9156-489C5CF52C90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35BBE2F8-3192-44C5-9156-489C5CF52C90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35BBE2F8-3192-44C5-9156-489C5CF52C90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33AC7D0C-7D44-4621-8DB7-56BBB1E2FB95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33AC7D0C-7D44-4621-8DB7-56BBB1E2FB95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33AC7D0C-7D44-4621-8DB7-56BBB1E2FB95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33AC7D0C-7D44-4621-8DB7-56BBB1E2FB95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
