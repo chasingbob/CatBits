@@ -22,7 +22,7 @@ namespace FFNNTestApp
             var negTest = @"C:\Temp\NN\test_neg";
             var pearsTest = @"C:\Temp\NN\pears_test";
 
-            var network = new NeuralNetwork.FeedForwardNeuralNetwork(625, 1, 1, 30, -1);
+            var network = new FeedForwardNeuralNetwork(625, 1, 1, 30, -1);
 
             var valTrainPos = GetValues(posTrain);
             var valTrainNeg = GetValues(negTrain);
@@ -30,7 +30,7 @@ namespace FFNNTestApp
             var valTestNeg = GetValues(negTest);
             var valPears = GetValues(pearsTest);
 
-            for (int i=0; i<1000; i++)
+            for (int i=0; i<10000; i++)
             {
                 foreach (var p in valTrainPos)
                 {
@@ -64,8 +64,6 @@ namespace FFNNTestApp
                 var result = network.Calculate(p.Item2);
                 Console.WriteLine($"Pear (Not apple): {result[0]}");
             }
-
-
         }
 
         private static List<Tuple<int, float[]>> GetValues(string posTrain)

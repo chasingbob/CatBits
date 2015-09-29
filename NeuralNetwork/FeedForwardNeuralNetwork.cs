@@ -81,14 +81,11 @@ namespace NeuralNetwork
                 {
                     float sum = layer.Neurons[i].Sum(bias, currentValues);
 
-                    // calculate the sigmoid inline to prevent call overhead
-                    // and use a lookup table
-                    // it's ~x100 faster
                     float outputValue;
                     if (sum >= 10) outputValue = 1;
                     else if (sum < -10) outputValue = 0;
-                    else outputValue = sigmoidLookup[SIGMOID_LOOKUP_OFFSET + (int)(sum * SIGMOID_FRACTION)];
-                    //        outputValue = Sigmoid(sum);
+                    else
+                        outputValue = ActivationFunction(sum); //Sigmoid(sum);
 
 
                     output[i] = outputValue;
@@ -169,7 +166,7 @@ namespace NeuralNetwork
             }
         }
 
-        public float[][] CalculateActivationPerNeuron(float[] input)
+        private float[][] CalculateActivationPerNeuron(float[] input)
         {
             float[][] values = new float[1 + 1 + NrOfHiddenLayers][];
 
@@ -184,11 +181,10 @@ namespace NeuralNetwork
                 {
                     float sum = layer.Neurons[j].Sum(bias, currentValues);
 
-                    //float outputValue = Sigmoid(sum);
                     float outputValue;
                     if (sum >= 10) outputValue = 1;
                     else if (sum < -10) outputValue = 0;
-                    else outputValue = sigmoidLookup[10000 + (int)(sum * SIGMOID_FRACTION)];
+                    else outputValue = ActivationFunction(sum);  //Sigmoid(sum);
 
                     output[j] = outputValue;
                 }
@@ -198,77 +194,10 @@ namespace NeuralNetwork
 
             return values;
         }
-
-        private const int SIGMOID_LOOKUP_OFFSET = 10000;
-        private const int SIGMOID_LOOKUP_SIZE = 20000;
-        private const int SIGMOID_FRACTION = 1000;
-        private static float[] sigmoidLookup;
-        static FeedForwardNeuralNetwork()
+      
+        public virtual float ActivationFunction(float value)
         {
-            sigmoidLookup = new float[SIGMOID_LOOKUP_SIZE];
-
-            for (int i = -10 * SIGMOID_FRACTION; i < 10 * SIGMOID_FRACTION; i++)
-            {
-                float val = (float)i / SIGMOID_FRACTION;
-                sigmoidLookup[SIGMOID_LOOKUP_OFFSET + i] = (float)(1 / (1 + Math.Pow(Math.E, -val)));
-            }
-
-            /*
-             * double sumDiff = 0;
-            for (float i = -10; i < 10; i += 0.001f)
-            {
-                sumDiff += Math.Abs(Sigmoid(i) - (float)(1 / (1 + Math.Pow(Math.E, -i))));
-            }
-            Console.WriteLine("Total diff: " + sumDiff);
-            */
-
-        }
-
-        //private static void RunThisIfYouDoubtInliningSigmoidIsNotWorthIt()
-        //{
-        //    Stopwatch w = new Stopwatch();
-        //    w.Start();
-        //    float value = 0;
-        //    for (long i = 0; i < 10000000; i++)
-        //    {
-        //        value = (float)(1 / (1 + Exp(-1.25f)));
-        //    }
-        //    w.Stop();
-
-
-        //    Stopwatch w2 = new Stopwatch();
-        //    w2.Start();
-
-        //    for (long i = 0; i < 10000000; i++)
-        //    {
-        //        //value = Sigmoid(-1.25f);
-        //        if (test > 10)
-        //            value = 1;
-        //        else if (test < -10)
-        //            value = 0;
-        //        else
-        //            value = sigmoidLookup[10000 + (int)(test * SIGMOID_FRACTION)];
-        //    }
-        //    w2.Stop();
-        //    Console.WriteLine("v" + value);
-        //    Console.WriteLine(w.ElapsedMilliseconds + " " + w2.ElapsedMilliseconds);
-        //}
-        //static float test = -1.25f;
-
-        private static float Sigmoid(float input)
-        {
-            //if (input > 5)
-            //    return 1;
-            //if (input < -5)
-            //    return 0;
-
-            return (float)(1 / (1 + Exp(-input)));
-        }
-
-        private static double Exp(double val)
-        {
-            long tmp = (long)(1512775 * val + (1072693248 - 60801));
-            return BitConverter.Int64BitsToDouble(tmp << 32);
+            return Activation.Sigmoid(value);
         }
 
         

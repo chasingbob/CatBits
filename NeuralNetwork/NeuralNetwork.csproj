@@ -45,7 +45,6 @@
     <Compile Include="FeedForwardNeuralNetwork.cs" />
     <Compile Include="Neuron.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SigmoidActication.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Algoritms\Algorithms.fsproj">
