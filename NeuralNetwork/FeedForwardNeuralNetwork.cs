@@ -65,7 +65,6 @@ namespace NeuralNetwork
             }
         }
 
-
         public float[] Calculate(float[] input)
         {
             float[] currentValues = input;
@@ -165,7 +164,6 @@ namespace NeuralNetwork
             }
         }
 
-
         public float[][] CalculateActivationPerNeuron(float[] input)
         {
             float[][] values = new float[1 + 1 + NrOfHiddenLayers][];
@@ -195,7 +193,6 @@ namespace NeuralNetwork
 
             return values;
         }
-
 
         private const int SIGMOID_LOOKUP_OFFSET = 10000;
         private const int SIGMOID_LOOKUP_SIZE = 20000;
