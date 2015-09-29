@@ -6,7 +6,7 @@ namespace NeuralNetwork
 {
     public class FeedForwardNeuralNetwork
     {
-        private NeuralLayer[] layers;
+        private Layer[] layers;
         public int NrOfOutputs { get; private set; }
         public int NrOfNeuronsPerHiddenLayer { get; private set; }
         public int NrOfHiddenLayers { get; private set; }
@@ -22,14 +22,14 @@ namespace NeuralNetwork
             this.NrOfOutputs = nrOfOutputs;
             this.NrOfNeuronsPerHiddenLayer = nrOfNeuronsPerHiddenLayer;
 
-            layers = new NeuralLayer[nrHiddenLayers + 1];
+            layers = new Layer[nrHiddenLayers + 1];
 
-            layers[0] = new NeuralLayer(nrOfInputs, nrOfNeuronsPerHiddenLayer);
+            layers[0] = new Layer(nrOfInputs, nrOfNeuronsPerHiddenLayer);
             for (int i = 1; i < nrHiddenLayers; i++)
-                layers[i] = new NeuralLayer(nrOfNeuronsPerHiddenLayer, nrOfNeuronsPerHiddenLayer);
+                layers[i] = new Layer(nrOfNeuronsPerHiddenLayer, nrOfNeuronsPerHiddenLayer);
 
             // last layer is the output layer
-            layers[nrHiddenLayers] = new NeuralLayer(nrOfNeuronsPerHiddenLayer, nrOfOutputs);
+            layers[nrHiddenLayers] = new Layer(nrOfNeuronsPerHiddenLayer, nrOfOutputs);
 
 
             if (weights == null)
@@ -40,7 +40,7 @@ namespace NeuralNetwork
 
         private float[] GetRandomWeights(float[] weights)
         {
-            weights = GetAllWeights();
+            weights = GetWeights();
             Random rnd = RandomManager.Instance.Random;
             for (int i = 0; i < weights.Length; i++)
             {
@@ -63,6 +63,11 @@ namespace NeuralNetwork
                     }
                 }
             }
+        }
+
+        public float[] GetWeights()
+        {
+            return layers.SelectMany(l => l.Neurons).SelectMany(l => l.NeuronWeights).ToArray();
         }
 
         public float[] Calculate(float[] input)
@@ -266,9 +271,6 @@ namespace NeuralNetwork
             return BitConverter.Int64BitsToDouble(tmp << 32);
         }
 
-        public float[] GetAllWeights()
-        {
-            return layers.SelectMany(l => l.Neurons).SelectMany(l => l.NeuronWeights).ToArray();
-        }
+        
     }
 }

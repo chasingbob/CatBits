@@ -2,23 +2,20 @@
 {
     public struct Neuron
     {
-
-        private float[] neuronWeights;
-
-        public float[] NeuronWeights { get { return neuronWeights; } }
+        public float[] NeuronWeights { get; private set; }
 
         public Neuron(int nrOfInputs)
         {
-            neuronWeights = new float[nrOfInputs];
+            NeuronWeights = new float[nrOfInputs];
         }
 
         public float Sum(float bias, float[] input)
         {
             float sum = 0;
             for (int i = 0; i < input.Length; i++)
-                sum += input[i] * neuronWeights[i];
+                sum += input[i] * NeuronWeights[i];
 
-            sum += bias * neuronWeights[neuronWeights.Length - 1];
+            sum += bias * NeuronWeights[NeuronWeights.Length - 1];
 
             return sum;
         }
