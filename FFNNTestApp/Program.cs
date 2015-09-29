@@ -30,7 +30,7 @@ namespace FFNNTestApp
             var valTestNeg = GetValues(negTest);
             var valPears = GetValues(pearsTest);
 
-            for (int i=0; i<10000; i++)
+            for (int i=0; i<1000; i++)
             {
                 foreach (var p in valTrainPos)
                 {
@@ -93,5 +93,19 @@ namespace FFNNTestApp
 
      
            
+    }
+
+    public class RandomNeuralNet : FeedForwardNeuralNetwork
+    {
+        public RandomNeuralNet(int nrOfInputs, int nrOfOutputs, int nrHiddenLayers, int nrOfNeuronsPerHiddenLayer, float bias, float[] weights = null)
+            : base(nrOfInputs,nrOfOutputs,nrHiddenLayers,nrOfNeuronsPerHiddenLayer,bias,weights)
+        {
+
+        }
+
+        public override float ActivationFunction(float value)
+        {
+            return (float)CatBits.Common.RandomManager.Instance.Random.NextDouble();
+        }
     }
 }
