@@ -20,7 +20,7 @@ b: http://blog.intellectualcafe.com
 ###Neural Networks
 
 The Neural Network implementation is loosely based on the excellent channel9 project
-https://channel9.msdn.com/coding4fun/blog/Neural-Network-and-Genetic-Algorithm-Bot-World
+[bot world](https://channel9.msdn.com/coding4fun/blog/Neural-Network-and-Genetic-Algorithm-Bot-World)
 
 <script src="https://gist.github.com/f717eb7682a6978d5406.git"></script>
 
